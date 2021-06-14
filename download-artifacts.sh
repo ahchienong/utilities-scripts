@@ -11,7 +11,7 @@ YOUR_PROJECT_ARTIFACTS_URL={YOUR_PROJECT_ARTIFACTS_URL}
 ########################################
 # 1. Download the artifact
 ########################################
-wget -o artifacts.zip --header="PRIVATE-TOKEN: $YOUR_ACCESS_TOKEN" $YOUR_PROJECT_ARTIFACTS_URL
+wget -O artifacts.zip --header="PRIVATE-TOKEN: $YOUR_ACCESS_TOKEN" $YOUR_PROJECT_ARTIFACTS_URL
 
 ########################################
 # 2. remove artifacts folder (if exists)
