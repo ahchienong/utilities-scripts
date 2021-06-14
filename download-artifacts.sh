@@ -6,7 +6,8 @@ YOUR_ACCESS_TOKEN={YOUR_ACCESS_TOKEN}
 YOUR_PROJECT_ARTIFACTS_URL={YOUR_PROJECT_ARTIFACTS_URL}
 
 ## Download the artifact
-curl --output artifacts.zip --header "PRIVATE-TOKEN: $YOUR_ACCESS_TOKEN" $YOUR_PROJECT_ARTIFACTS_URL
+#curl --output artifacts.zip --header "PRIVATE-TOKEN: $YOUR_ACCESS_TOKEN" $YOUR_PROJECT_ARTIFACTS_URL
+wget --header="PRIVATE-TOKEN: $YOUR_ACCESS_TOKEN" $YOUR_PROJECT_ARTIFACTS_URL
 
 ## Unzip the file
 unzip artifacts.zip 
