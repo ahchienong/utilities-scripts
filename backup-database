@@ -1,0 +1,15 @@
+#!/bin/bash
+
+#Configuration
+DATABASE_USER="liferay02"
+DATABASE_SCHEMA="liferay02"
+LOCATION_TO_SAVE="./backup"
+
+#NOT RECOMMENDED
+DATABASE_PASS="<NOT RECOMMENDED>"
+
+mysqldump -u $DATABASE_USER -p --no-tablespaces --databases $DATABASE_SCHEMA > $LOCATION_TO_SAVE/$DATABASE_SCHEMA-$(date +%Y%m%d-%H%M%S).sql
+
+#NOT RECOMMENDED
+#WITH PASSWORD
+#mysqldump -u $DATABASE_USER -p$DATABASE_PASS --no-tablespaces --databases $DATABASE_SCHEMA > $LOCATION_TO_SAVE/$DATABASE_SCHEMA-$(date +%Y%m%d-%H%M%S).sql
