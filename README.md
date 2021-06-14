@@ -10,7 +10,7 @@
 
     1.1 Executable
     
-    > `chmod a+x gather-artifacts.sh`
+    > `chmod 711 gather-artifacts.sh`
     
     1.2 Run command to gather artifacts scripts
 
