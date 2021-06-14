@@ -8,7 +8,11 @@
 
     > `wget https://raw.githubusercontent.com/ahchienong/utilities-scripts/main/gather-artifacts.sh`
 
-    1.1 Run command to gather artifacts scripts
+    1.1 Executable
+    
+    > `chmod a+x gather-artifacts.sh`
+    
+    1.2 Run command to gather artifacts scripts
 
     > `./gather-artifacts.sh`
 
