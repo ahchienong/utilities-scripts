@@ -28,10 +28,10 @@ curl -u $OSS_USER:$OSS_PASS -s GET "$OSS_BASE_URL/service/rest/v1/search/assets?
 ###############################################
 # 2. obtained latest artifacts url
 ###############################################
-OSS_ARTIFACT_DL_URL=cat downloadUrl.list
+OSS_ARTIFACT_DL_URL=$(cat downloadUrl.list)
 
 ###############################################
 # 3. download latest artifacts
 ###############################################
-wget --user=$OSS_USER --password='$OSS_PASS' $OSS_ARTIFACT_DL_URL
+wget --user=$OSS_USER --password="$OSS_PASS" $OSS_ARTIFACT_DL_URL
 
