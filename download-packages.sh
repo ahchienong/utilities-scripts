@@ -26,9 +26,10 @@ OSS_ARTIFACT_EXT=
 curl -u $OSS_USER:$OSS_PASS -s GET "$OSS_BASE_URL/service/rest/v1/search/assets?sort=version&direction=desc&repository=$OSS_ARTIFACT_REPO&maven.groupId=$OSS_ARTIFACT_GROUP&maven.artifactId=$OSS_ARTIFACT_ID&maven.extension=$OSS_ARTIFACT_EXT" -H "accept: application/json" | jq -r '.items | .[0] | .downloadUrl?' > downloadUrl.list
 
 ###############################################
-# 2. obtained latest artifacts url
+# 2. obtained latest artifacts url, update latest_jar name
 ###############################################
 OSS_ARTIFACT_DL_URL=$(cat downloadUrl.list)
+echo $(basename $(cat downloadUrl.list)) > latest_jar.list
 
 ###############################################
 # 3. download latest artifacts
