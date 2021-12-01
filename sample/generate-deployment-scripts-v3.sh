@@ -5,7 +5,6 @@
 ###############################################
 BASE_DIR_1="/Users/ongkc/workspace/playground/utilities-scripts/sample"
 BASE_DIR_2="/Users/ongkc/workspace/playground/utilities-scripts/sample"
-ARTIFACTS_DIR=$BASE_DIR_1"/to_deploy"
 WORKSPACE_DIR_1=$BASE_DIR_2"/workspace1"
 WORKSPACE_DIR_2=$BASE_DIR_2"/workspace2"
 DEPLOY_DIR=$BASE_DIR_2"/deploy"
@@ -35,16 +34,23 @@ if [ "$#" -eq "2" ]; then
         if [ "$agree" =  "y" ]; then
                 #clean workspace
                 echo "##############################################"
+                echo "# clean workspace..."
+                echo "$BASE_DIR_1/$WORKSPACE_FOLDER"
+                echo "----------------------------------------------"
                 rm -rf "$BASE_DIR_1/$WORKSPACE_FOLDER/artifacts"
                 rm -f "$BASE_DIR_1/$WORKSPACE_FOLDER/artifacts.list"
                 rm -rf "$BASE_DIR_1/$WORKSPACE_FOLDER/to_deploy"
 
                 #unzip artifacts
-                echo "##############################################"
+                echo "----------------------------------------------"
+                echo "# unzip artifacts..."
+                echo "----------------------------------------------"
                 unzip $BASE_DIR_1/$WORKSPACE_FOLDER/artifacts.zip -d $BASE_DIR_1/$WORKSPACE_FOLDER/artifacts
 
                 #gather artifacts
-                echo "##############################################"
+                echo "----------------------------------------------"
+                echo "# gather artifacts..."
+                echo "----------------------------------------------"
                 du -a $BASE_DIR_1/$WORKSPACE_FOLDER/artifacts | awk '{print $2}' | grep '[\.jar|\.war]$' > $BASE_DIR_1/$WORKSPACE_FOLDER/artifacts.list
                 mkdir $BASE_DIR_1/$WORKSPACE_FOLDER/to_deploy
                 for i in $(cat $BASE_DIR_1/$WORKSPACE_FOLDER/artifacts.list); do 
@@ -131,7 +137,7 @@ if [ "$#" -eq "2" ]; then
 else
         echo "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
         echo "  Incorrect number of arguments. (2) "
-        echo "  Expecting 2 : VERSION ARTIFACTS_LOCATION"
+        echo "  Expecting 2 : VERSION WORKSPACE_FOLDER"
         echo "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
         exit 2
 fi
