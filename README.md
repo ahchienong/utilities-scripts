@@ -16,6 +16,17 @@
 
     > `./gather-artifacts.sh`
 
+2. Download `generate-deployment-scripts` to server workspace.
+- v1 usage:
+    - placed in specific workspace, execute in specific workspace
+    - configure scripts
+    - `./generate-deployment-scripts.sh`
+- v2 usage:
+    - placed in specific workspace, execute in specific workspace
+    - `./generate-deployment-scripts-v2.sh <VERSION> <FULL PATH to ARTIFACTS FOLDER>`
+- v3 usage:
+    - **placed one level above workspace, execute one level above workspace**
+    - `generate-deployment-scripts-v3.sh <VERSION> <WORKSPACE FOLDER>`
 ----
 
 _Assumptions & Tested on_
