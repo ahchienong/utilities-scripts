@@ -11,25 +11,13 @@ WORKSPACE_DIR_2=$BASE_DIR_2"/workspace2"
 DEPLOY_DIR=$BASE_DIR_2"/deploy"
 OVERRIDE_IF_EXISTS=true
 
-#clean workspace
-rm -rf "$BASE_DIR_1/$WORKSPACE_FOLDER/artifacts"
-rm -f "$BASE_DIR_1/$WORKSPACE_FOLDER/artifacts.list"
-rm -rf "$BASE_DIR_1/$WORKSPACE_FOLDER/to_deploy"
-
-#unzip artifacts
-unzip $BASE_DIR_1/$WORKSPACE_FOLDER/artifacts.zip -d $BASE_DIR_1/$WORKSPACE_FOLDER/artifacts
-
-#gather artifacts
-for i in $(cat $BASE_DIR_1/$WORKSPACE_FOLDER/artifacts.list); do 
-    cp $i $BASE_DIR_1/$WORKSPACE_FOLDER/to_deploy/
-done
-
 echo "##############################################"
 echo "Script Name: $0 | $# arguments"
 
 if [ "$#" -eq "2" ]; then
         VERSION=$1
         WORKSPACE_FOLDER=$2
+
         ###############################################
         # 0.2 limitation: this file still required to be update manually
         ###############################################
@@ -45,6 +33,24 @@ if [ "$#" -eq "2" ]; then
         echo "Selected: $agree"
 
         if [ "$agree" =  "y" ]; then
+                #clean workspace
+                echo "##############################################"
+                rm -rf "$BASE_DIR_1/$WORKSPACE_FOLDER/artifacts"
+                rm -f "$BASE_DIR_1/$WORKSPACE_FOLDER/artifacts.list"
+                rm -rf "$BASE_DIR_1/$WORKSPACE_FOLDER/to_deploy"
+
+                #unzip artifacts
+                echo "##############################################"
+                unzip $BASE_DIR_1/$WORKSPACE_FOLDER/artifacts.zip -d $BASE_DIR_1/$WORKSPACE_FOLDER/artifacts
+
+                #gather artifacts
+                echo "##############################################"
+                du -a $BASE_DIR_1/$WORKSPACE_FOLDER/artifacts | awk '{print $2}' | grep '[\.jar|\.war]$' > $BASE_DIR_1/$WORKSPACE_FOLDER/artifacts.list
+                mkdir $BASE_DIR_1/$WORKSPACE_FOLDER/to_deploy
+                for i in $(cat $BASE_DIR_1/$WORKSPACE_FOLDER/artifacts.list); do 
+                    cp $i $BASE_DIR_1/$WORKSPACE_FOLDER/to_deploy/
+                done
+
                 echo "##############################################"
                 ARTIFACTS_DIR=$BASE_DIR_1"/"$WORKSPACE_FOLDER"/to_deploy"
                 RELEASE_VER=$VERSION
